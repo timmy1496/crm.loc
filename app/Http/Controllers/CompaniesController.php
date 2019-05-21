@@ -53,11 +53,11 @@ class CompaniesController extends Controller
     public function update($company)
     {
         $company = Company::find($company);
-        $company->name       = Input::get('name');
-        $company->email      = Input::get('email');
-        $company->phone = Input::get('phone');
+        $company->name    = Input::get('name');
+        $company->email   = Input::get('email');
+        $company->phone   = Input::get('phone');
         $company->website = Input::get('website');
-        $company->logo = Input::get('logo');
+        $company->logo    = Input::get('logo');
         $company->save();
 
 

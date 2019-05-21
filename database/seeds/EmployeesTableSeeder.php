@@ -14,22 +14,22 @@ class EmployeesTableSeeder extends Seeder
     {
         DB::table('employees')->insert([
             [
-                'first name' => 'dima',
-                'last name' => 'dima@local.in',
+                'first_name' => 'dima',
+                'last_name' => 'dima@local.in',
                 'company_id' => 1,
                 'email' => 'www.dima.228',
                 'phone' => '0506931231',
             ],
             [
-                'first name' => 'artem',
-                'last name' => 'artem@local.in',
+                'first_name' => 'artem',
+                'last_name' => 'artem@local.in',
                 'company_id' => 2,
                 'email' => 'www.artem.1488',
                 'phone' => '0996931231',
             ],
             [
-                'first name' => 'sveta',
-                'last name' => 'svet@local.in',
+                'first_name' => 'sveta',
+                'last_name' => 'svet@local.in',
                 'company_id' => 3,
                 'email' => 'www.sveta.1337',
                 'phone' => '0676931231',
