@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Company;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\DB;
 
 class CompaniesController extends Controller
 {
@@ -15,7 +16,7 @@ class CompaniesController extends Controller
 
     public function index()
     {
-        $companies = Company::all();
+        $companies = DB::table('companies')->paginate(5);
 
         return view('companies.index', ['companies' => $companies]);
     }
