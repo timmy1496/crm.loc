@@ -44,4 +44,5 @@
         </div>
     @endforeach
     <button><a href="/employees/create">Ad new employee</a></button>
+    <span>{{ $employees->links() }}</span>
 @endsection

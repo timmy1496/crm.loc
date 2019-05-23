@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use App\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\DB;
 
 class EmployeesController extends Controller
 {
     public function index()
     {
-        $employees = Employee::all();
+        $employees = DB::table('employees')->paginate(5);
 
         return view('employees.index',['employees' => $employees]);
 
