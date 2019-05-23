@@ -34,10 +34,9 @@
         </div>
 
     <button><a href="/companies/ {{$company->id}} /edit">Сhange</a></button>
-    <form action="/companies/{{ $company->id }}" method="POST">
+    <form action="/companies/{{ $company->id }}" method="post">
         @method('DELETE')
         @csrf
-
         <button type="submit" class="btn btn-danger">Delete company</button>
     </form>
 @endsection

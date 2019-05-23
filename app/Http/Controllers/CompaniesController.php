@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Input;
 
 class CompaniesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $companies = Company::all();
@@ -23,6 +28,15 @@ class CompaniesController extends Controller
 
     public function store(Request $request)
     {
+        /*
+        if ($request->hasFile('logo')) {
+            $path = $request->file('logo')->store('companies', 'public');
+
+            $company = new Company();
+            $company->logo = $path;
+            $company->save();
+        }
+
         Company::create(
             $request->validate([
                 'name' => 'required',
@@ -32,6 +46,23 @@ class CompaniesController extends Controller
                 'logo' => 'required',
             ])
         );
+         */
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'website' => 'required',
+            'logo' => 'required',
+        ]);
+
+        $company = new Company();
+        $company->name = $request->name;
+        $company->email = $request->email;
+        $company->phone = $request->phone;
+        $company->website = $request->website;
+        $company->logo = $request->file('logo')->store('companies', 'public');
+        $company->save();
 
         return redirect('/companies');
     }
@@ -57,7 +88,7 @@ class CompaniesController extends Controller
         $company->email   = Input::get('email');
         $company->phone   = Input::get('phone');
         $company->website = Input::get('website');
-        $company->logo    = Input::get('logo');
+        //   $company->logo    = Input::get('logo');
         $company->save();
 
 
@@ -73,4 +104,5 @@ class CompaniesController extends Controller
         return redirect('companies');
 
     }
+
 }

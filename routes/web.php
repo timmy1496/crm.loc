@@ -24,4 +24,5 @@ Route::resource('employees', 'EmployeesController');
 Route::resource('companies', 'CompaniesController');
 
 
+
 //Route::get('companies', 'CompaniesController@index');

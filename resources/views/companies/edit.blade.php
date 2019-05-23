@@ -1,6 +1,6 @@
 @extends ('layout')
 
-@section('title', 'Edi company')
+@section('title', 'Edit company')
 
 @section ('content')
     <form action="/companies/{{ $company->id }}" method="post">
@@ -25,10 +25,9 @@
             <input type="text" name="website" value="{{ $company->website}}" class="form-control">
             <div>{{ $errors->first('website') }}</div>
         </div>
-        <label for="phone">Logo</label>
         <div class="form-group">
-            <input type="text" name="logo" value="{{ $company->logo }}" class="form-control">
-            <div>{{ $errors->first('logo') }}</div>
+            <input type="file" name="logo" value="{{ $company->logo}}" class="form-control">
+            <div>{{ $errors->first('website') }}</div>
         </div>
         <button type="submit">Сhange</button>
         @csrf
