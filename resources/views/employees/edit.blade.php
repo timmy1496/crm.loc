@@ -3,7 +3,7 @@
 @section('title', 'Edit employee')
 
 @section ('content')
-    <form action="/employees/{{ $employees->id }}" method="post">
+    <form action="/employees/{{ $employees->id }}" method="post" >
         @method('PATCH')
         <label for="name">First name</label>
         <div class="form-group">

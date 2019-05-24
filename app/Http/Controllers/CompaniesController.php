@@ -82,14 +82,14 @@ class CompaniesController extends Controller
         return view('companies.edit', ['company' => $company]);
     }
 
-    public function update($company)
+    public function update(Request $request, $company)
     {
         $company = Company::find($company);
         $company->name    = Input::get('name');
         $company->email   = Input::get('email');
         $company->phone   = Input::get('phone');
         $company->website = Input::get('website');
-        //   $company->logo    = Input::get('logo');
+        $company->logo    = $request->file('logo') ? $request->file('logo')->store('companies', 'public') : $company->logo;
         $company->save();
 
 

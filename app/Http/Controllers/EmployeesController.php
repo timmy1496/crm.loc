@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\DB;
 
 class EmployeesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $employees = DB::table('employees')->paginate(5);

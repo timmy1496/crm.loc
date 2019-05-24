@@ -3,7 +3,7 @@
 @section('title', 'Edit company')
 
 @section ('content')
-    <form action="/companies/{{ $company->id }}" method="post">
+    <form action="/companies/{{ $company->id }}" method="post" enctype="multipart/form-data">
         @method('PATCH')
         <label for="name">Name</label>
         <div class="form-group">
@@ -22,11 +22,11 @@
         </div>
         <label for="phone">Website</label>
         <div class="form-group">
-            <input type="text" name="website" value="{{ $company->website}}" class="form-control">
+            <input type="text" name="website" value="{{ $company->website }}" class="form-control">
             <div>{{ $errors->first('website') }}</div>
         </div>
         <div class="form-group">
-            <input type="file" name="logo" value="{{ $company->logo}}" class="form-control">
+            <input type="file" name="logo" value="{{ $company->logo }}" class="form-control">
             <div>{{ $errors->first('website') }}</div>
         </div>
         <button type="submit">Сhange</button>
