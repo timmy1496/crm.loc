@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use App\Company;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
+use App\Http\Interfaces\Pagination;
 
-class CompaniesController extends Controller
+class CompaniesController extends Controller implements Pagination
 {
     public function __construct()
     {
@@ -16,7 +17,7 @@ class CompaniesController extends Controller
 
     public function index()
     {
-        $companies = DB::table('companies')->paginate(5);
+        $companies = DB::table('companies')->paginate(self::PAGES_PAGINATION);
 
         return view('companies.index', ['companies' => $companies]);
     }
@@ -84,12 +85,13 @@ class CompaniesController extends Controller
 
     public function update(Request $request, $company)
     {
+
         $company = Company::find($company);
-        $company->name    = Input::get('name');
-        $company->email   = Input::get('email');
-        $company->phone   = Input::get('phone');
+        $company->name = Input::get('name');
+        $company->email = Input::get('email');
+        $company->phone = Input::get('phone');
         $company->website = Input::get('website');
-        $company->logo    = $request->file('logo') ? $request->file('logo')->store('companies', 'public') : $company->logo;
+        $company->logo = $request->file('logo') ? $request->file('logo')->store('companies', 'public') : $company->logo;
         $company->save();
 
 

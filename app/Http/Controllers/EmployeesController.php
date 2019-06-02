@@ -6,8 +6,9 @@ use App\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
+use App\Http\Interfaces\Pagination;
 
-class EmployeesController extends Controller
+class EmployeesController extends Controller implements Pagination
 {
     public function __construct()
     {
@@ -16,9 +17,9 @@ class EmployeesController extends Controller
 
     public function index()
     {
-        $employees = DB::table('employees')->paginate(5);
+        $employees = DB::table('employees')->paginate(self::PAGES_PAGINATION);
 
-        return view('employees.index',['employees' => $employees]);
+        return view('employees.index', ['employees' => $employees]);
 
         //return response()->json($employees);
     }
@@ -61,9 +62,9 @@ class EmployeesController extends Controller
     {
         $employees = Employee::find($employees);
         $employees->first_name = Input::get('first_name');
-        $employees->last_name  = Input::get('last_name');
-        $employees->email      = Input::get('email');
-        $employees->phone      = Input::get('phone');
+        $employees->last_name = Input::get('last_name');
+        $employees->email = Input::get('email');
+        $employees->phone = Input::get('phone');
         $employees->company_id = Input::get('company_id');
         $employees->save();
 
